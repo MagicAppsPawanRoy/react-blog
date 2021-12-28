@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Context } from '../context/BlogContext'
 import { Feather } from '@expo/vector-icons'
@@ -16,7 +16,11 @@ const ShowScreen = ({ navigation }) => {
 
 ShowScreen.navigationOptions = ({ navigation }) => ({
     headerRight: () => (
-        <TouchableOpacity onPress={() => navigation.navigate('Edit')}>
+        <TouchableOpacity
+            onPress={() =>
+                navigation.navigate('Edit', { id: navigation.getParam('id') })
+            }
+        >
             <Feather name='edit' size={20} />
         </TouchableOpacity>
     ),
