@@ -4,6 +4,7 @@ import createDataContext from './createDataContext'
 const blogReducer = (state, action) => {
     switch (action.type) {
         case 'add_blogPost':
+            action.payload.Callback()
             return [
                 ...state,
                 {
@@ -40,8 +41,11 @@ function editBlogPost(dispatch) {
 }
 
 function addBlogPost(dispatch) {
-    return (title, content) => {
-        dispatch({ type: 'add_blogPost', payload: { title, content } })
+    return (title, content, Callback) => {
+        dispatch({
+            type: 'add_blogPost',
+            payload: { title, content, Callback },
+        })
     }
 }
 
