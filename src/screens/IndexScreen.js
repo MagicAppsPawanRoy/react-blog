@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import {
     TouchableOpacity,
     View,
-    Button,
     Text,
     StyleSheet,
     FlatList,
@@ -14,7 +13,6 @@ const IndexScreen = ({ navigation }) => {
     const { state, addBlogPost, deleteBlogPost } = useContext(Context)
     return (
         <View>
-            <Button title='Add Post' onPress={addBlogPost} />
             <FlatList
                 data={state}
                 keyExtractor={(blogPost) => blogPost.title}
@@ -44,6 +42,15 @@ const IndexScreen = ({ navigation }) => {
         </View>
     )
 }
+
+IndexScreen.navigationOptions = ({ navigation }) => ({
+    headerRight: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+            <Feather name='plus' size={40} />
+        </TouchableOpacity>
+    ),
+})
+
 const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
